@@ -3,12 +3,16 @@ package com.example.student_Crud.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.student_Crud.repository.StudentRepository;
+
+import jakarta.validation.Valid;
+
 import com.example.student_Crud.model.Student;
 
 
@@ -40,19 +44,25 @@ public class StudentController {
     }
     
     
-    @GetMapping("/list/edit/{id}")
-    public String showEditForm(@PathVariable("id") int id, Model model) {
-    	
-        Student student = studentRepository.findById(id).orElse(null);
-
-        if (student == null) {
-            return "redirect:/list"; // if student not found, go back to list
+    @PostMapping("/saveStudent")
+    public String saveStudent(@Valid @ModelAttribute("student") Student student,
+                              BindingResult result,
+                              Model model) {
+        if (result.hasErrors()) {
+            return "add-student"; 
         }
 
-        model.addAttribute("student", student);
-        return "student_form";
+        
+        return "redirect:/students";
     }
-	
-	
+
+    
+    @GetMapping("/list/delete/{id}")
+    public String deleteStudent(@PathVariable("id") int id) {
+        studentRepository.deleteById(id);
+        return "redirect:/list";
+    }
+
+
 
 }
