@@ -37,23 +37,18 @@ public class StudentController {
     }
     
     
+  
+    
     @PostMapping("/list/save")
-    public String saveStudent(@ModelAttribute("student") Student student) {
-    	 studentRepository.save(student);
-    	    return "redirect:/list";
-    }
-    
-    
-    @PostMapping("/saveStudent")
     public String saveStudent(@Valid @ModelAttribute("student") Student student,
                               BindingResult result,
                               Model model) {
         if (result.hasErrors()) {
-            return "add-student"; 
+            return "student_form"; 
         }
 
         
-        return "redirect:/students";
+        return "redirect:/list";
     }
 
     
@@ -61,6 +56,20 @@ public class StudentController {
     public String deleteStudent(@PathVariable("id") int id) {
         studentRepository.deleteById(id);
         return "redirect:/list";
+    }
+    
+    
+    @GetMapping("/list/edit/{id}")
+    public String editStudent(@PathVariable("id") int id, Model model) {
+    	
+        Student student = studentRepository.findById(id).orElse(null);
+        if (student == null) {
+        	
+            return "redirect:/list"; 
+        }
+        model.addAttribute("student", student);
+        
+        return "student_form";
     }
 
 
