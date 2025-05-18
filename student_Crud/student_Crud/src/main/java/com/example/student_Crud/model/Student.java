@@ -33,8 +33,8 @@ public class Student {
     private String department;
 
     @NotNull(message = "GPA is required")
-    @DecimalMin(value = "0.0", inclusive = true, message = "GPA must be at least 0.0")
-    @DecimalMax(value = "4.0", inclusive = true, message = "GPA must be at most 4.0")
+   @DecimalMin(value = "0.0", inclusive = true, message = "GPA must be at least 0.0")
+   @DecimalMax(value = "4.0", inclusive = true, message = "GPA must be at most 4.0")
     private Double gpa;
 
     @NotNull(message = "Graduation year is required")
@@ -83,7 +83,7 @@ public class Student {
     }
 
     public Double getGpa() {
-        return gpa=0.0;
+        return gpa;
     }
 
     public void setGpa(Double gpa) {

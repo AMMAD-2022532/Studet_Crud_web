@@ -8,24 +8,24 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import com.example.student_Crud.model.Student;
 
-import com.example.student_Crud.repository.StudentRepository;
+
+import com.example.student_Crud.service.StudentService;
 
 import jakarta.validation.Valid;
-
-import com.example.student_Crud.model.Student;
 
 
 
 @Controller
 public class StudentController {
 	@Autowired
-    private StudentRepository studentRepository;
+    private StudentService studentService;
 
 	@GetMapping("/list")
 	public String studentlist(Model model) {
 		
-		model.addAttribute("allstudents", studentRepository.findAll());
+		model.addAttribute("allstudents", studentService.getAllStudents());
 		return "student_list";
 		
 	}
@@ -47,31 +47,28 @@ public class StudentController {
             return "student_form"; 
         }
 
-        
+        studentService.saveStudent(student);
         return "redirect:/list";
     }
 
     
     @GetMapping("/list/delete/{id}")
     public String deleteStudent(@PathVariable("id") int id) {
-        studentRepository.deleteById(id);
+    	  studentService.deleteStudentById(id);
         return "redirect:/list";
     }
     
     
     @GetMapping("/list/edit/{id}")
     public String editStudent(@PathVariable("id") int id, Model model) {
-    	
-        Student student = studentRepository.findById(id).orElse(null);
-        if (student == null) {
-        	
-            return "redirect:/list"; 
-        }
+        Student student = studentService.getStudentById(id);
         model.addAttribute("student", student);
-        
         return "student_form";
     }
-
+    @GetMapping("/login")
+    public String loginPage() {
+        return "login"; 
+    }
 
 
 }
