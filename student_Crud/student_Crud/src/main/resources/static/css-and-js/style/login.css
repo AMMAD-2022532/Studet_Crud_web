@@ -1,0 +1,125 @@
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+
+body
+
+ {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #f0f4f8;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+
+.app-header 
+{
+  width: 100%;
+  padding: 1rem;
+  background: #ffffff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  text-align: center;
+}
+.app-header h1 {
+  font-size: 1.5rem;
+  color: #34495e;
+}
+
+
+.login-wrapper
+ {
+  margin: auto;
+  background: #ffffff;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  width: 100%;
+  max-width: 360px;
+}
+
+
+.login-wrapper h2 
+{
+  margin-bottom: 1.5rem;
+  color: #34495e;
+  text-align: center;
+  font-size: 1.75rem;
+}
+
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+label
+ {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #34495e;
+  font-size: 0.9rem;
+}
+
+input 
+{
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #bbb;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  transition: border-color .2s;
+}
+input:focus {
+  outline: none;
+  border-color: #e67e22;
+}
+
+
+button 
+{
+  width: 100%;
+  padding: 0.75rem;
+  background: #e67e22;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background .2s, opacity .2s;
+}
+button:hover:not([disabled]) {
+  background: #d35400;
+}
+button[disabled] {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+
+.error, .feedback
+ {
+  display: block;
+  height: 1em;
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+}
+.error
+ {
+  color: #c0392b;
+}
+.error-msg 
+{
+  text-align: center;
+}
+
+.info-msg 
+{
+  color: #27ae60;
+  text-align: center;
+}
