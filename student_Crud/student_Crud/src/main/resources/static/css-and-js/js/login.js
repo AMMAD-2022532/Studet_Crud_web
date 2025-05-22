@@ -1,9 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('loginForm');
+  
+  
 
   form.addEventListener('submit', event => {
     event.preventDefault();
     clearErrors();
+    
 
     let valid = true;
     ['username','password'].forEach(field => {
@@ -11,6 +14,8 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!input.value.trim()) {
         showError(field, `${field.charAt(0).toUpperCase()}${field.slice(1)} is required`);
         valid = false;
+        
+        
       }
     });
 
@@ -20,13 +25,16 @@ document.addEventListener('DOMContentLoaded', () => {
       btn.textContent = 'Logging in…';
       form.submit();
     }
+    
   });
 
-  function showError(field, message) {
+  function showError(field, message) 
+  {
     document.querySelector(`.error[data-for="${field}"]`).textContent = message;
   }
 
-  function clearErrors() {
+  function clearErrors() 
+  {
     document.querySelectorAll('.error').forEach(el => el.textContent = '');
   }
 });
