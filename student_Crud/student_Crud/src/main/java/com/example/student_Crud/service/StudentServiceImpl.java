@@ -6,6 +6,7 @@ import java.util.Optional;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.example.student_Crud.model.Student;
@@ -19,7 +20,8 @@ public class StudentServiceImpl implements StudentService {
 	    public List<Student> getAllStudents() {
 	 
 	      
-	        return studentRepository.findAll();
+	       // return studentRepository.findAll();
+	    	return studentRepository.findAll(Sort.by(Sort.Direction.DESC, "Id"));
 	    }
 	    
 
@@ -29,17 +31,17 @@ public class StudentServiceImpl implements StudentService {
 	    }
 
 	    @Override
-	    public Student getStudentById(int id) {
+	    public Student getStudentById(long id) {
 	        Optional<Student> optional = studentRepository.findById(id);
 	        if (optional.isPresent()) {
 	            return optional.get();
 	        } else {
-	            throw new RuntimeException("Student not found for ID :: " + id);
+	            throw new RuntimeException("Student not found for ID : " + id);
 	        }
 	    }
 
 	    @Override
-	    public void deleteStudentById(int id) {
+	    public void deleteStudentById(long id) {
 	        studentRepository.deleteById(id);
 	    }
 }

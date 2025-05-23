@@ -1,4 +1,3 @@
-/* student_list.css */
 
 * {
   box-sizing: border-box;
@@ -54,7 +53,8 @@ body {
   box-shadow: 0 0 3px rgba(230,126,34,0.4);
 }
 
-.btn-add {
+.btn-add,
+.btn-logout {
   background: #e67e22;
   color: #fff;
   text-decoration: none;
@@ -62,9 +62,12 @@ body {
   border-radius: 0.5rem;
   transition: background 0.2s;
   font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1;
 }
 
-.btn-add:hover {
+.btn-add:hover,
+.btn-logout:hover {
   background: #d35400;
 }
 
@@ -126,10 +129,10 @@ body {
   color: #fff;
   text-decoration: none;
   padding: 0.4rem 0.75rem;
-  margin-left: 0.5rem;
   border-radius: 0.5rem;
   font-size: 0.9rem;
   transition: background 0.2s;
+  margin-left: 0.5rem;
 }
 
 .btn-action:hover {

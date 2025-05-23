@@ -21,6 +21,7 @@ import jakarta.validation.Valid;
 public class StudentController {
 	@Autowired
     private StudentService studentService;
+	
 
 	@GetMapping("/list")
 	public String studentlist(Model model) {
@@ -53,14 +54,14 @@ public class StudentController {
 
     
     @GetMapping("/list/delete/{id}")
-    public String deleteStudent(@PathVariable("id") int id) {
+    public String deleteStudent(@PathVariable("id") long id) {
     	  studentService.deleteStudentById(id);
         return "redirect:/list";
     }
     
     
     @GetMapping("/list/edit/{id}")
-    public String editStudent(@PathVariable("id") int id, Model model) {
+    public String editStudent(@PathVariable("id") long id, Model model) {
         Student student = studentService.getStudentById(id);
         model.addAttribute("student", student);
         return "student_form";
@@ -69,6 +70,7 @@ public class StudentController {
     public String loginPage() {
         return "login"; 
     }
+  
 
-
+  
 }

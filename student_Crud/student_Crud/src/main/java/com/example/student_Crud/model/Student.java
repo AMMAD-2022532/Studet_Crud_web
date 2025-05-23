@@ -1,5 +1,7 @@
 package com.example.student_Crud.model;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.DecimalMax;
@@ -13,9 +15,13 @@ import jakarta.validation.constraints.NotNull;
 @Entity
 @Table(name = "students")
 public class Student {
-
-    @Id
-    private int studentId;
+	 @Id
+	  @GeneratedValue(strategy = GenerationType.IDENTITY)
+	  private Long id; 
+    
+	@NotNull(message = "Student ID is required")
+	@Min(value = 1, message = "Student ID must be greater than 0")  
+    private Integer studentId;
 
     @NotBlank(message = "Name is required")
     private String name;
@@ -40,13 +46,13 @@ public class Student {
     @NotNull(message = "Graduation year is required")
     private Integer graduationYear;
 
-    // Getters and Setters
 
-    public int getStudentId() {
+
+    public Integer getStudentId() {
         return studentId;
     }
 
-    public void setStudentId(int studentId) {
+    public void setStudentId(Integer studentId) {
         this.studentId = studentId;
     }
 
@@ -96,5 +102,12 @@ public class Student {
 
     public void setGraduationYear(Integer graduationYear) {
         this.graduationYear = graduationYear;
+    }
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

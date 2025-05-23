@@ -1,42 +1,81 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>Form</title>
+  <meta charset="UTF-8">
+  <title th:text="${student.id != null} ? 'Edit Student' : 'student Form'">Student Form</title>
+  <link th:href="@{/css-and-js/style/student_form.css}" rel="stylesheet">
 </head>
 <body>
- <h2>Add Student</h2>
-    <form th:action="@{/list/save}" th:object="${student}" method="post">
+  <div class="site-container">
+    <header class="site-header">
+      <h1 class="site-title" th:text="${student.id != null} ? 'Edit Student' : 'Add Student'">Student Form</h1>
+      <a href="#" onclick="return confirmBack();" class="nav-button">← Back to List</a>
+    </header>
 
-        <label>Student ID:</label>
-        <input type="number" th:field="*{studentId}" /><br/>
+    <main>
+      <div class="form-card">
+        <form th:action="@{/list/save}" th:object="${student}" method="post" novalidate>
+          <input type="hidden" th:field="*{id}" />
 
-        <label>Name:</label>
-        <input type="text" th:field="*{name}" />
-        <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div><br/>
+          <div class="form-row">
+            <label>Student ID</label>
+            <input type="number" th:field="*{studentId}" placeholder="e.g. 1001" />
+            <div th:if="${#fields.hasErrors('studentId')}" th:errors="*{studentId}" class="error-msg"></div>
+          </div>
 
-        <label>Age:</label>
-        <input type="number" th:field="*{age}" />
-        <div th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></div><br/>
+          <div class="form-row">
+            <label>Name</label>
+            <input type="text" th:field="*{name}" placeholder="e.g. Ammad Hussain" />
+            <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="error-msg"></div>
+          </div>
 
-        <label>Email:</label>
-        <input type="email" th:field="*{email}" />
-        <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div><br/>
+          <div class="form-row">
+            <label>Age</label>
+            <input type="number" th:field="*{age}" placeholder="e.g. 21" />
+            <div th:if="${#fields.hasErrors('age')}" th:errors="*{age}" class="error-msg"></div>
+          </div>
 
-        <label>Department:</label>
-        <input type="text" th:field="*{department}" />
-        <div th:if="${#fields.hasErrors('department')}" th:errors="*{department}"></div><br/>
+          <div class="form-row">
+            <label>Email</label>
+            <input type="email" th:field="*{email}" placeholder="e.g. ammad@email.com" />
+            <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="error-msg"></div>
+          </div>
 
-        <label>GPA:</label>
-        <input type="number" step="0.01" th:field="*{gpa}" />
-        <div th:if="${#fields.hasErrors('gpa')}" th:errors="*{gpa}"></div><br/>
+          <div class="form-row">
+            <label>Department</label>
+            <input type="text" th:field="*{department}" placeholder="e.g. IT or Chemistry" />
+            <div th:if="${#fields.hasErrors('department')}" th:errors="*{department}" class="error-msg"></div>
+          </div>
 
-        <label>Graduation Year:</label>
-        <input type="number" th:field="*{graduationYear}" />
-        <div th:if="${#fields.hasErrors('graduationYear')}" th:errors="*{graduationYear}"></div><br/>
+          <div class="form-row">
+            <label>GPA</label>
+            <input type="number" th:field="*{gpa}" placeholder="e.g. 3.45" />
+            <div th:if="${#fields.hasErrors('gpa')}" th:errors="*{gpa}" class="error-msg"></div>
+          </div>
 
-        <button type="submit">Save</button>
-    </form>
+          <div class="form-row">
+            <label>Graduation Year</label>
+            <input type="number" th:field="*{graduationYear}" placeholder="e.g. 2026" />
+            <div th:if="${#fields.hasErrors('graduationYear')}" th:errors="*{graduationYear}" class="error-msg"></div>
+          </div>
 
+          <div class="form-actions">
+            <button type="submit" class="btn-primary">Save Student</button>
+          </div>
+        </form>
+      </div>
+    </main>
+  </div>
+
+  <!-- Modal for back confirmation -->
+  <div id="backConfirmModal" class="modal">
+    <div class="modal-content">
+      <p>You have unsaved changes. Are you sure you want to go back?</p>
+      <button class="modal-btn yes" onclick="goBack()">Yes</button>
+      <button class="modal-btn no" onclick="closeBackModal()">No</button>
+    </div>
+  </div>
+
+  <script th:src="@{/css-and-js/js/student_form.js}"></script>
 </body>
 </html>
