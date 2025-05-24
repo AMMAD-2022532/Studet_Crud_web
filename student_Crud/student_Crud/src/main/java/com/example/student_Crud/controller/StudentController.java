@@ -22,6 +22,10 @@ public class StudentController {
 	@Autowired
     private StudentService studentService;
 	
+	@GetMapping("/")
+	public String redirectToList() {
+	    return "redirect:/list";
+	}
 
 	@GetMapping("/list")
 	public String studentlist(Model model) {
