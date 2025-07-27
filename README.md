@@ -109,6 +109,6 @@ This project was developed for an academic assignment. The goal was to create a 
 ## 👨‍🎓 Author
 
 **Ammad Hussain**  
-Final Year Student – BSc in Computing  
+3rd year  Student – BSc in Computing  
 CCT College Dublin  
 Student ID: 2022532  
